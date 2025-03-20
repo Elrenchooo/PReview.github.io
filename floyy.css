@@ -1,0 +1,115 @@
+@font-face {
+    font-family: 'Rage Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: url('font/rage-italic-webfont/RAGE_1.woff') format('woff');
+    }
+
+@font-face {
+    font-family: 'Road Rage';
+    font-style: normal;
+    font-weight: normal;
+    src: url('font/road_rage/Road_Rage.otf') format('OpenType');
+}
+
+
+*{
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100%;
+    height: 100dvh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #030011;
+}
+
+.content{
+    margin: 60px;
+    width: 100%;
+
+    max-width: 991px;
+}
+
+button{
+    border: none;
+    border-radius: 1000px;
+    cursor: pointer;
+    color: #0e004e;
+    font-family: Rage Italic;
+
+    min-height: 410px;
+    width: 90%;
+    position: relative;
+    font-size: 1.5rem;
+
+    background: linear-gradient(to bottom left, #7e7d7d, #54bbff, #0059ff, #5e5e5e);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:hover ,button:active{
+    z-index: 0;
+}
+
+button:active{
+    background: linear-gradient(to bottom right, #0a192f, #507fc7 10%, #420e52, #4b0d5e);
+    color: #ffc400;
+    font-size: 2.25rem;
+    font-family:Road Rage, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+button::after , button::before{
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    z-index: -1;
+
+    background-image: conic-gradient(from var(--angle), #8404ce, #ca00a9, #00e1ff, #ca00a9, #8404ce);
+    animation: spin 2s infinite linear;
+}
+
+@keyframes spin{
+    from{
+        --angle: 0deg;
+    }
+    to{
+        --angle: 360deg;
+    }
+}
+
+button::before{
+    filter: blur(3em);
+    opacity: 1;
+}
+
+@media screen and (max-width: 1000px) {
+    body{
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .content{
+        margin: 20px auto;
+    }
+    button{
+        margin-left: 20px;
+    
+        min-height: 330px;
+        width: 90%;
+    }
+}

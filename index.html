@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="floyy.css">
+    <title>11/04/</title>
+</head>
+<body>
+    <div class="content">
+        <button onclick="playMusic(this)">CLICK ON ME
+            <audio id="music1" src="audio/tomp3.cc - CHICA ATRACTIVA  FloyyMenor.mp3" type="audio/mpeg" controlsList="nodownload"></audio>
+        </button>
+    </div>
+
+    <div class="content">
+        <button onclick="playMusic(this)">DON'T CLICK ON ME
+            <audio id="music2" src="audio/Rompan_Fila_Cris_MJ_Floyymenor_Taita_Youngkingz17.mp3" type="audio/mpeg" controlsList="nodownload"></audio>
+        </button>
+    </div>
+
+
+<script>
+        let clickCount = 0;
+        let clickTimer;
+
+        function playMusic(card) {
+            let audio = card.querySelector("audio");
+            clickCount++;
+
+            if (clickCount === 1) {
+                clickTimer = setTimeout(() => {
+                    if (audio.paused) {
+                        document.querySelectorAll("audio").forEach(el => {
+                            if (el !== audio) {
+                                el.pause();
+                            }
+                        });
+                        audio.play();
+                    } else {
+                        audio.pause();
+                    }
+                    clickCount = 0;
+                }, 300);
+            } else if (clickCount === 2) {
+                clearTimeout(clickTimer);
+                audio.pause();
+                audio.currentTime = 0;
+                clickCount = 0;
+            }
+
+            document.addEventListener("contextmenu", function (event) {
+                event.preventDefault();
+                });
+        }
+</script>
+
+
+</body>
+</html>
